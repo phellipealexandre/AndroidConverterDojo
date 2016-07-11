@@ -41,6 +41,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
 
         spinnerFrom.setAdapter(adapter);
         spinnerTo.setAdapter(adapter);
+        spinnerTo.setSelection(1);
         btnConvert.setOnClickListener(this);
     }
 
