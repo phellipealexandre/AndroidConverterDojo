@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AndroidConverterDojo</string>
+    <string name="main_title">Android Converter Dojo</string>
+    <string name="convert_from">Converter de:</string>
+    <string name="convert_to">Para:</string>
+    <string name="input_number">Digite o número a ser convertido</string>
+    <string name="convert">Converter</string>
 </resources>
