@@ -181,6 +181,4 @@ public class ArabicToRomanConverterTest {
 
         assertEquals("DCCCXC", result);
     }
-
-
 }
