@@ -1,13 +1,15 @@
 package com.converterdojo.pafsilva.androidconverterdojo.arabic2roman;
 
-public class ArabicToRomanConverter {
+import com.converterdojo.pafsilva.androidconverterdojo.common.Converter;
+
+public class ArabicToRomanConverter implements Converter {
 
     public String convert(String arabicNumberStr) {
         String roman = "";
         int arabic = Integer.parseInt(arabicNumberStr);
 
         while (arabic != 0) {
-            for (RomanSymbols symbol : RomanSymbols.values()) {
+            for (RomanSymbol symbol : RomanSymbol.values()) {
                 if (arabic >= symbol.getValue()) {
                     roman += symbol.toString();
                     arabic -= symbol.getValue();

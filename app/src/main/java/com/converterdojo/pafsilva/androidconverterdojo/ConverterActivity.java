@@ -2,9 +2,7 @@ package com.converterdojo.pafsilva.androidconverterdojo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +10,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.converterdojo.pafsilva.androidconverterdojo.arabic2roman.ArabicToRomanConverter;
-import com.converterdojo.pafsilva.androidconverterdojo.arabic2roman.RomanSymbols;
+import com.converterdojo.pafsilva.androidconverterdojo.common.Converter;
+import com.converterdojo.pafsilva.androidconverterdojo.common.ConverterFactory;
+import com.converterdojo.pafsilva.androidconverterdojo.common.NumericSystem;
 
 public class ConverterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,7 +22,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
     private Button btnConvert;
     private TextView txtAnswer;
 
-    private String[] numericSystems = {"Arabic", "Roman"};
+    private String[] numericSystems = {NumericSystem.Arabic.toString(), NumericSystem.Roman.toString()};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,15 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         String input = edtInput.getText().toString();
-        ArabicToRomanConverter converter = new ArabicToRomanConverter();
+        Converter converter = selectConverter();
 
         txtAnswer.setText(converter.convert(input));
+    }
+
+    private Converter selectConverter() {
+        NumericSystem from = NumericSystem.valueOf(spinnerFrom.getSelectedItem().toString());
+        NumericSystem to = NumericSystem.valueOf(spinnerTo.getSelectedItem().toString());
+
+        return ConverterFactory.createConverter(from, to);
     }
 }

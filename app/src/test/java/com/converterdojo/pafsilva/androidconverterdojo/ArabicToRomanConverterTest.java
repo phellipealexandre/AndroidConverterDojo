@@ -1,9 +1,6 @@
 package com.converterdojo.pafsilva.androidconverterdojo;
 
-import android.util.Log;
-
 import com.converterdojo.pafsilva.androidconverterdojo.arabic2roman.ArabicToRomanConverter;
-import com.converterdojo.pafsilva.androidconverterdojo.arabic2roman.RomanSymbols;
 
 import org.junit.Test;
 

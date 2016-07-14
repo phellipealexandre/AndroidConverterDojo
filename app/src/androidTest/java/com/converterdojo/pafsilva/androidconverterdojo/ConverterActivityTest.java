@@ -31,7 +31,7 @@ public class ConverterActivityTest  {
     public ActivityTestRule<ConverterActivity> activityRule = new ActivityTestRule<>(ConverterActivity.class);
 
     @Test
-    public void changeText_sameActivity() {
+    public void shouldConvertFromArabicToRomanWhenCorrectSpinnersAreSelected() {
         onView(withId(R.id.spinnerFrom)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Arabic"))).perform(click());
 
@@ -42,5 +42,33 @@ public class ConverterActivityTest  {
         onView(withId(R.id.btnConvert)).perform(click());
 
         onView(withId(R.id.txtAnswer)).check(matches(withText("LXXXVIII")));
+    }
+
+    @Test
+    public void shouldNotConvertWhenSameValuesOnSpinnersAreSelected() {
+        onView(withId(R.id.spinnerFrom)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Arabic"))).perform(click());
+
+        onView(withId(R.id.spinnerTo)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Arabic"))).perform(click());
+
+        onView(withId(R.id.edtInput)).perform(typeText("88"), closeSoftKeyboard());
+        onView(withId(R.id.btnConvert)).perform(click());
+
+        onView(withId(R.id.txtAnswer)).check(matches(withText("88")));
+    }
+
+    @Test
+    public void shouldNotConvertWhenSameValuesOnSpinnersAreSelected2() {
+        onView(withId(R.id.spinnerFrom)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Roman"))).perform(click());
+
+        onView(withId(R.id.spinnerTo)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Roman"))).perform(click());
+
+        onView(withId(R.id.edtInput)).perform(typeText("IV"), closeSoftKeyboard());
+        onView(withId(R.id.btnConvert)).perform(click());
+
+        onView(withId(R.id.txtAnswer)).check(matches(withText("IV")));
     }
 }
