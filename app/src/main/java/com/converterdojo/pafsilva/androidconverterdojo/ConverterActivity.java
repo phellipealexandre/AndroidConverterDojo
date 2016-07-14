@@ -2,6 +2,7 @@ package com.converterdojo.pafsilva.androidconverterdojo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.converterdojo.pafsilva.androidconverterdojo.arabic2roman.RomanSymbols;
 
 public class ConverterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,7 +38,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         spinnerFrom = (Spinner) findViewById(R.id.spinnerFrom);
         spinnerTo = (Spinner) findViewById(R.id.spinnerTo);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 numericSystems);
 
