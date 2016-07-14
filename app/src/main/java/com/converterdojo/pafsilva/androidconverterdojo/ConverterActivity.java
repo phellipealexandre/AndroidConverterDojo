@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.converterdojo.pafsilva.androidconverterdojo.arabic2roman.ArabicToRomanConverter;
 import com.converterdojo.pafsilva.androidconverterdojo.arabic2roman.RomanSymbols;
 
 public class ConverterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -48,10 +49,11 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
         btnConvert.setOnClickListener(this);
     }
 
-    //TODO: Implementar aqui o clique do botão
     @Override
     public void onClick(View view) {
         String input = edtInput.getText().toString();
-        txtAnswer.setText(input);
+        ArabicToRomanConverter converter = new ArabicToRomanConverter();
+
+        txtAnswer.setText(converter.convert(input));
     }
 }
