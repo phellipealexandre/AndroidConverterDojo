@@ -10,6 +10,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.converterdojo.pafsilva.androidconverterdojo.converter.ArabicToRomanConverter;
+import com.converterdojo.pafsilva.androidconverterdojo.converter.NumericConverter;
+import com.converterdojo.pafsilva.androidconverterdojo.converter.RomanToArabicConverter;
+
 public class ConverterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText edtInput;
@@ -40,6 +44,7 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
                 numericSystems);
 
         spinnerFrom.setAdapter(adapter);
+
         spinnerTo.setAdapter(adapter);
         spinnerTo.setSelection(1);
         btnConvert.setOnClickListener(this);
@@ -49,6 +54,23 @@ public class ConverterActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         String input = edtInput.getText().toString();
-        txtAnswer.setText(input);
+
+        String numericBaseFrom = (String)spinnerFrom.getSelectedItem();
+        String numericBaseTo = spinnerTo.getSelectedItem().toString();
+
+        NumericConverter converter = null;
+        if (numericBaseFrom.equals("Arabic") && numericBaseTo.equals("Roman")) {
+            converter = new ArabicToRomanConverter();
+        }
+
+        if (numericBaseFrom.equals("Roman") && numericBaseTo.equals("Arabic")) {
+            converter = new RomanToArabicConverter();
+        }
+
+        if (input.length() > 0){
+            txtAnswer.setText(converter.convert(input));
+        } else{
+            txtAnswer.setText("Empty Number!");
+        }
     }
 }
